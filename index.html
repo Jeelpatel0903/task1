@@ -1,44 +1,108 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>task 1</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <body>
-          <div class="container">
-        <h1>User Form</h1>
-          <form >
-            <label for="">Enter user ID</label>
-            <input type="text" id="userid"><br>
-            <label for="">Enter user Name</label>
-            <input type="text"  id="userName"><br>
-            <label for="">Enter user Location</label>
-            <input type="text"  id="userLocation"><br>
-            <label for="">Enter user Gst Number</label>
-            <input type="text"  id="gstNumber">
-          </form>
-        </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 30px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-input {
+            margin-right: 10px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        table {
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            User Form
+            <div class="search-box">
+                <input type="text" id="searchInput" class="form-control search-input" placeholder="Search...">
+                <button onclick="searchData()" class="btn btn-primary">Search</button>
+            </div>
+        </h1>
+        <form>
+            <label for="userid">Enter user ID</label>
+            <input type="text" id="userid" class="form-control"><br>
+            <label for="userName">Enter user Name</label>
+            <input type="text"  id="userName" class="form-control"><br>
+            <label for="userLocation">Enter user Location</label>
+            <input type="text"  id="userLocation" class="form-control"><br>
+            <label for="gstNumber">Enter user Gst Number</label>
+            <input type="text"  id="gstNumber" class="form-control">
+        </form>
         <button onclick="getdata()" class="btn btn-primary">ADD</button>
 
         <table class="table">
             <thead>
-              <tr>
-                <th scope="col">id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Location</th>
-                <th scope="col">Gst</th>
-                <th>Delete</th>
-              </tr>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Gst</th>
+                    <th>Delete</th>
+                </tr>
             </thead>
+            <tbody id='masterTable'>
+                <!-- Table body content goes here -->
+            </tbody>
+        </table>
+    </div>
 
-                <tbody id='masterTable'>
-
-                </tbody>
-          </table>
-
-
-
-
-        <script src="index.js"></script> 
-    </body>
-    </head>
+    <script src="index.js"></script>
+</body>
 </html>

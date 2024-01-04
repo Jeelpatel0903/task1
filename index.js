@@ -30,43 +30,103 @@ function getdata() {
 
     console.log(companyList);
     showdata();
+}
 
-    function showdata() {
-        // Clear existing content
-        document.getElementById('masterTable').innerHTML = "";
+function showdata() {
+    // Clear existing content
+    document.getElementById('masterTable').innerHTML = "";
 
-        companyList.forEach(element => {
-            const row = document.createElement('tr');
-            const userTd = document.createElement('td');
-            const username = document.createElement('td');
-            const userlocation = document.createElement('td');
-            const gstnumber = document.createElement('td');
-            const deletebutton = document.createElement('input');
+    companyList.forEach(element => {
+        const row = document.createElement('tr');
 
-            deletebutton.type = "button";
-            deletebutton.className = "btn btn-danger";
-            deletebutton.value = "delete";
+        // Create table cells for each data field
+        const userTd = document.createElement('td');
+        userTd.innerText = element.companyId;
 
-            deletebutton.onclick = function () {
-                const index = companyList.findIndex(el => el.companyId === element.companyId);
-                if (index !== -1) {
-                    companyList.splice(index, 1);
-                    showdata();
-                }
-            };
+        const username = document.createElement('td');
+        username.innerText = element.companyName;
 
-            userTd.innerText = element.companyId;
-            username.innerText = element.companyName;
-            userlocation.innerText = element.companyLocation;
-            gstnumber.innerText = element.companyGst;
+        const userlocation = document.createElement('td');
+        userlocation.innerText = element.companyLocation;
 
-            row.appendChild(userTd);
-            row.appendChild(username);
-            row.appendChild(userlocation);
-            row.appendChild(gstnumber);
-            row.appendChild(deletebutton);
+        const gstnumber = document.createElement('td');
+        gstnumber.innerText = element.companyGst;
 
-            document.getElementById('masterTable').appendChild(row);
+        // Create delete button
+        const deleteButtonCell = document.createElement('td');
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'btn btn-danger';
+        deleteButton.innerText = 'Delete';
+
+        deleteButton.addEventListener('click', function () {
+            const index = companyList.findIndex(el => el.companyId === element.companyId);
+            if (index !== -1) {
+                companyList.splice(index, 1);
+                showdata();
+            }
         });
-    }
+
+        deleteButtonCell.appendChild(deleteButton);
+
+        // Append cells to the row
+        row.appendChild(userTd);
+        row.appendChild(username);
+        row.appendChild(userlocation);
+        row.appendChild(gstnumber);
+        row.appendChild(deleteButtonCell);
+
+        // Append row to the table
+        document.getElementById('masterTable').appendChild(row);
+    });
+}
+
+function searchData() {
+    const searchInput = document.getElementById("searchInput").value.toLowerCase();
+    const filteredList = companyList.filter(element => element.companyName.includes(searchInput));
+
+    // Update the displayed list with the filtered results
+    document.getElementById('masterTable').innerHTML = "";
+    
+    filteredList.forEach(element => {
+        const row = document.createElement('tr');
+        
+        // Create table cells for each data field
+        const userTd = document.createElement('td');
+        userTd.innerText = element.companyId;
+        
+        const username = document.createElement('td');
+        username.innerText = element.companyName;
+        
+        const userlocation = document.createElement('td');
+        userlocation.innerText = element.companyLocation;
+        
+        const gstnumber = document.createElement('td');
+        gstnumber.innerText = element.companyGst;
+        
+        // Create delete button
+        const deleteButtonCell = document.createElement('td');
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'btn btn-danger';
+        deleteButton.innerText = 'Delete';
+        
+        deleteButton.addEventListener('click', function () {
+            const index = companyList.findIndex(el => el.companyId === element.companyId);
+            if (index !== -1) {
+                companyList.splice(index, 1);
+                showdata();
+            }
+        });
+        
+        deleteButtonCell.appendChild(deleteButton);
+        
+        // Append cells to the row
+        row.appendChild(userTd);
+        row.appendChild(username);
+        row.appendChild(userlocation);
+        row.appendChild(gstnumber);
+        row.appendChild(deleteButtonCell);
+        
+        // Append row to the table
+        document.getElementById('masterTable').appendChild(row);
+    });
 }
