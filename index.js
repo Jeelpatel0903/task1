@@ -10,10 +10,16 @@ function getdata() {
     }
 
     let company = new Company();
+
+    
+
     company.companyId = document.getElementById("userid").value;
     company.companyName = document.getElementById("userName").value;
     company.companyLocation = document.getElementById("userLocation").value;
     company.companyGst = document.getElementById("gstNumber").value;
+
+    
+
     companyList.push({
         "companyId": company.companyId,
         "companyName": company.companyName,
@@ -23,6 +29,8 @@ function getdata() {
 
     console.log(companyList);
     showdata();
+
+
 
     function showdata() {
         // Clear existing content
@@ -42,6 +50,7 @@ function getdata() {
 
             deletebutton.onclick = function () {
                 const index = companyList.findIndex(el => el.companyId === element.companyId);
+                console.log(index);
                 if (index !== -1) {
                     companyList.splice(index, 1);
                     showdata();
