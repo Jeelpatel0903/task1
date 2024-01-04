@@ -1,4 +1,3 @@
-
 let companyList = [];
 
 function getdata() {
@@ -10,15 +9,17 @@ function getdata() {
     }
 
     let company = new Company();
-
-    
-
     company.companyId = document.getElementById("userid").value;
     company.companyName = document.getElementById("userName").value;
     company.companyLocation = document.getElementById("userLocation").value;
     company.companyGst = document.getElementById("gstNumber").value;
 
-    
+    // Check if data already exists
+    const existingIndex = companyList.findIndex(el => el.companyId === company.companyId);
+    if (existingIndex !== -1) {
+        alert("Data with the same ID already exists. Please update the existing data or enter a new ID.");
+        return;
+    }
 
     companyList.push({
         "companyId": company.companyId,
@@ -29,8 +30,6 @@ function getdata() {
 
     console.log(companyList);
     showdata();
-
-
 
     function showdata() {
         // Clear existing content
@@ -50,7 +49,6 @@ function getdata() {
 
             deletebutton.onclick = function () {
                 const index = companyList.findIndex(el => el.companyId === element.companyId);
-                console.log(index);
                 if (index !== -1) {
                     companyList.splice(index, 1);
                     showdata();
